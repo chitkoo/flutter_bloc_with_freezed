@@ -1,6 +1,8 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:rest_client/rest_client.dart';
+import 'package:users_repository/src/models/models.dart';
 
 /// {@template users_repository}
 /// User Data Repository
@@ -14,9 +16,11 @@ class UsersRepository {
   final RestClient _restClient;
 
   ///GET USERS LIST
-  Future<void> getUsersList() async {
+  Future<UsersListEntity> getUsersList() async {
     final response = await _restClient.getUsersList();
 
-    debugPrint('Response ${response.statusCode} ${response.body}');
+    final bodyJson = jsonDecode(response.body) as Map<String, dynamic>;
+
+    return UsersListEntity.fromJson(bodyJson);
   }
 }

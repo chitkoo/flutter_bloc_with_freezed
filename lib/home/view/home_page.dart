@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,13 +14,47 @@ class HomePage extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.read<HomeBloc>().add(const HomeEvent.started());
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            switch (state.apiStatus) {
+              case ApiStatus.loading:
+                return const CupertinoActivityIndicator();
+              case ApiStatus.succeed:
+                return const UserListTile();
+              case ApiStatus.failed:
+                return const Text('Error');
+              case ApiStatus.pure:
+                return ElevatedButton(
+                  onPressed: () {
+                    context.read<HomeBloc>().add(const HomeEvent.started());
+                  },
+                  child: const Text('Get Users'),
+                );
+            }
           },
-          child: const Text('Get Users'),
         ),
       ),
+    );
+  }
+}
+
+class UserListTile extends StatelessWidget {
+  const UserListTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return ListView.builder(
+          itemCount: state.usersList.length,
+          itemBuilder: (BuildContext context, int index) {
+            final user = state.usersList[index];
+            return ListTile(
+              title: Text(user.name?.first ?? ''),
+            );
+          },
+        );
+      },
     );
   }
 }

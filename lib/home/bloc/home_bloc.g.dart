@@ -10,11 +10,16 @@ _$HomeStateImpl _$$HomeStateImplFromJson(Map<String, dynamic> json) =>
     _$HomeStateImpl(
       apiStatus: $enumDecodeNullable(_$ApiStatusEnumMap, json['apiStatus']) ??
           ApiStatus.pure,
+      usersList: (json['usersList'] as List<dynamic>?)
+              ?.map((e) => Users.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$HomeStateImplToJson(_$HomeStateImpl instance) =>
     <String, dynamic>{
       'apiStatus': _$ApiStatusEnumMap[instance.apiStatus]!,
+      'usersList': instance.usersList,
     };
 
 const _$ApiStatusEnumMap = {

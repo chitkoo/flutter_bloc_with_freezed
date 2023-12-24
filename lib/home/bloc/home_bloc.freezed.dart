@@ -170,6 +170,7 @@ HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$HomeState {
   ApiStatus get apiStatus => throw _privateConstructorUsedError;
+  List<Users> get usersList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -182,7 +183,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({ApiStatus apiStatus});
+  $Res call({ApiStatus apiStatus, List<Users> usersList});
 }
 
 /// @nodoc
@@ -199,12 +200,17 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? apiStatus = null,
+    Object? usersList = null,
   }) {
     return _then(_value.copyWith(
       apiStatus: null == apiStatus
           ? _value.apiStatus
           : apiStatus // ignore: cast_nullable_to_non_nullable
               as ApiStatus,
+      usersList: null == usersList
+          ? _value.usersList
+          : usersList // ignore: cast_nullable_to_non_nullable
+              as List<Users>,
     ) as $Val);
   }
 }
@@ -217,7 +223,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ApiStatus apiStatus});
+  $Res call({ApiStatus apiStatus, List<Users> usersList});
 }
 
 /// @nodoc
@@ -232,12 +238,17 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? apiStatus = null,
+    Object? usersList = null,
   }) {
     return _then(_$HomeStateImpl(
       apiStatus: null == apiStatus
           ? _value.apiStatus
           : apiStatus // ignore: cast_nullable_to_non_nullable
               as ApiStatus,
+      usersList: null == usersList
+          ? _value._usersList
+          : usersList // ignore: cast_nullable_to_non_nullable
+              as List<Users>,
     ));
   }
 }
@@ -245,7 +256,9 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({this.apiStatus = ApiStatus.pure});
+  const _$HomeStateImpl(
+      {this.apiStatus = ApiStatus.pure, final List<Users> usersList = const []})
+      : _usersList = usersList;
 
   factory _$HomeStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeStateImplFromJson(json);
@@ -253,10 +266,18 @@ class _$HomeStateImpl implements _HomeState {
   @override
   @JsonKey()
   final ApiStatus apiStatus;
+  final List<Users> _usersList;
+  @override
+  @JsonKey()
+  List<Users> get usersList {
+    if (_usersList is EqualUnmodifiableListView) return _usersList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usersList);
+  }
 
   @override
   String toString() {
-    return 'HomeState(apiStatus: $apiStatus)';
+    return 'HomeState(apiStatus: $apiStatus, usersList: $usersList)';
   }
 
   @override
@@ -265,12 +286,15 @@ class _$HomeStateImpl implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
             (identical(other.apiStatus, apiStatus) ||
-                other.apiStatus == apiStatus));
+                other.apiStatus == apiStatus) &&
+            const DeepCollectionEquality()
+                .equals(other._usersList, _usersList));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, apiStatus);
+  int get hashCode => Object.hash(
+      runtimeType, apiStatus, const DeepCollectionEquality().hash(_usersList));
 
   @JsonKey(ignore: true)
   @override
@@ -287,13 +311,17 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({final ApiStatus apiStatus}) = _$HomeStateImpl;
+  const factory _HomeState(
+      {final ApiStatus apiStatus,
+      final List<Users> usersList}) = _$HomeStateImpl;
 
   factory _HomeState.fromJson(Map<String, dynamic> json) =
       _$HomeStateImpl.fromJson;
 
   @override
   ApiStatus get apiStatus;
+  @override
+  List<Users> get usersList;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
