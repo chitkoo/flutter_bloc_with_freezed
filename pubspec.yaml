@@ -15,6 +15,10 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
+  #Custom Packages
+  users_repository:
+    path: packages/users_repository
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
