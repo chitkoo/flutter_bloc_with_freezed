@@ -19,32 +19,38 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() fetchMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function()? fetchMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? fetchMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_FetchMore value) fetchMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_FetchMore value)? fetchMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_FetchMore value)? fetchMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() fetchMore,
   }) {
     return started();
   }
@@ -114,6 +121,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function()? fetchMore,
   }) {
     return started?.call();
   }
@@ -122,6 +130,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? fetchMore,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -134,6 +143,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_FetchMore value) fetchMore,
   }) {
     return started(this);
   }
@@ -142,6 +152,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_FetchMore value)? fetchMore,
   }) {
     return started?.call(this);
   }
@@ -150,6 +161,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_FetchMore value)? fetchMore,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -163,6 +175,108 @@ abstract class _Started implements HomeEvent {
   const factory _Started() = _$StartedImpl;
 }
 
+/// @nodoc
+abstract class _$$FetchMoreImplCopyWith<$Res> {
+  factory _$$FetchMoreImplCopyWith(
+          _$FetchMoreImpl value, $Res Function(_$FetchMoreImpl) then) =
+      __$$FetchMoreImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchMoreImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$FetchMoreImpl>
+    implements _$$FetchMoreImplCopyWith<$Res> {
+  __$$FetchMoreImplCopyWithImpl(
+      _$FetchMoreImpl _value, $Res Function(_$FetchMoreImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FetchMoreImpl implements _FetchMore {
+  const _$FetchMoreImpl();
+
+  @override
+  String toString() {
+    return 'HomeEvent.fetchMore()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FetchMoreImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() fetchMore,
+  }) {
+    return fetchMore();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? fetchMore,
+  }) {
+    return fetchMore?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? fetchMore,
+    required TResult orElse(),
+  }) {
+    if (fetchMore != null) {
+      return fetchMore();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_FetchMore value) fetchMore,
+  }) {
+    return fetchMore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_FetchMore value)? fetchMore,
+  }) {
+    return fetchMore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_FetchMore value)? fetchMore,
+    required TResult orElse(),
+  }) {
+    if (fetchMore != null) {
+      return fetchMore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchMore implements HomeEvent {
+  const factory _FetchMore() = _$FetchMoreImpl;
+}
+
 HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
   return _HomeState.fromJson(json);
 }
@@ -171,6 +285,8 @@ HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
 mixin _$HomeState {
   ApiStatus get apiStatus => throw _privateConstructorUsedError;
   List<Users> get usersList => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  bool get isLoadingMore => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -183,7 +299,11 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({ApiStatus apiStatus, List<Users> usersList});
+  $Res call(
+      {ApiStatus apiStatus,
+      List<Users> usersList,
+      int page,
+      bool isLoadingMore});
 }
 
 /// @nodoc
@@ -201,6 +321,8 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $Res call({
     Object? apiStatus = null,
     Object? usersList = null,
+    Object? page = null,
+    Object? isLoadingMore = null,
   }) {
     return _then(_value.copyWith(
       apiStatus: null == apiStatus
@@ -211,6 +333,14 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.usersList
           : usersList // ignore: cast_nullable_to_non_nullable
               as List<Users>,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      isLoadingMore: null == isLoadingMore
+          ? _value.isLoadingMore
+          : isLoadingMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -223,7 +353,11 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ApiStatus apiStatus, List<Users> usersList});
+  $Res call(
+      {ApiStatus apiStatus,
+      List<Users> usersList,
+      int page,
+      bool isLoadingMore});
 }
 
 /// @nodoc
@@ -239,6 +373,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   $Res call({
     Object? apiStatus = null,
     Object? usersList = null,
+    Object? page = null,
+    Object? isLoadingMore = null,
   }) {
     return _then(_$HomeStateImpl(
       apiStatus: null == apiStatus
@@ -249,6 +385,14 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value._usersList
           : usersList // ignore: cast_nullable_to_non_nullable
               as List<Users>,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      isLoadingMore: null == isLoadingMore
+          ? _value.isLoadingMore
+          : isLoadingMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -257,7 +401,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
-      {this.apiStatus = ApiStatus.pure, final List<Users> usersList = const []})
+      {this.apiStatus = ApiStatus.pure,
+      final List<Users> usersList = const [],
+      this.page = 1,
+      this.isLoadingMore = false})
       : _usersList = usersList;
 
   factory _$HomeStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -276,8 +423,15 @@ class _$HomeStateImpl implements _HomeState {
   }
 
   @override
+  @JsonKey()
+  final int page;
+  @override
+  @JsonKey()
+  final bool isLoadingMore;
+
+  @override
   String toString() {
-    return 'HomeState(apiStatus: $apiStatus, usersList: $usersList)';
+    return 'HomeState(apiStatus: $apiStatus, usersList: $usersList, page: $page, isLoadingMore: $isLoadingMore)';
   }
 
   @override
@@ -288,13 +442,16 @@ class _$HomeStateImpl implements _HomeState {
             (identical(other.apiStatus, apiStatus) ||
                 other.apiStatus == apiStatus) &&
             const DeepCollectionEquality()
-                .equals(other._usersList, _usersList));
+                .equals(other._usersList, _usersList) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.isLoadingMore, isLoadingMore) ||
+                other.isLoadingMore == isLoadingMore));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, apiStatus, const DeepCollectionEquality().hash(_usersList));
+  int get hashCode => Object.hash(runtimeType, apiStatus,
+      const DeepCollectionEquality().hash(_usersList), page, isLoadingMore);
 
   @JsonKey(ignore: true)
   @override
@@ -313,7 +470,9 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final ApiStatus apiStatus,
-      final List<Users> usersList}) = _$HomeStateImpl;
+      final List<Users> usersList,
+      final int page,
+      final bool isLoadingMore}) = _$HomeStateImpl;
 
   factory _HomeState.fromJson(Map<String, dynamic> json) =
       _$HomeStateImpl.fromJson;
@@ -322,6 +481,10 @@ abstract class _HomeState implements HomeState {
   ApiStatus get apiStatus;
   @override
   List<Users> get usersList;
+  @override
+  int get page;
+  @override
+  bool get isLoadingMore;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>

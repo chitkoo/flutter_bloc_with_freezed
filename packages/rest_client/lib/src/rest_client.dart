@@ -15,10 +15,11 @@ class RestClient {
 
   static const _baseUrl = 'randomuser.me';
 
-  ///`REST API` get users `randomuser.me/api/?results=5`
-  Future<http.Response> getUsersList() async {
+  ///`REST API` get users `randomuser.me/api/?results=10&page=1`
+  Future<http.Response> getUsersList({required String page}) async {
     final query = {
-      'results': '5',
+      'results': '15',
+      'page' : page,
     };
 
     final uri = Uri.https(_baseUrl, '/api/', query);

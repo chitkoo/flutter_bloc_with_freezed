@@ -15,6 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       : _usersRepository = usersRepository,
         super(const HomeState()) {
     on<_Started>(_onStarted);
+    on<_FetchMore>(_onFetchMore);
   }
 
   final UsersRepository _usersRepository;
@@ -36,6 +37,33 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       debugPrint(e.toString());
       emit(state.copyWith(
         apiStatus: ApiStatus.failed,
+      ));
+    }
+  }
+
+  Future<void> _onFetchMore(_FetchMore event, Emitter<HomeState> emit) async {
+    if (state.isLoadingMore) return;
+
+    emit(state.copyWith(isLoadingMore: true));
+    try {
+      final response =
+          await _usersRepository.getUsersList(page: state.page + 1);
+      if (response.results!.isNotEmpty) {
+        final List<Users> users = response.results ?? [];
+        final updatedList = List<Users>.of(state.usersList)..addAll(users);
+        emit(
+          state.copyWith(
+            usersList: updatedList,
+            isLoadingMore: false,
+            page: state.page + 1,
+          ),
+        );
+      }
+    } on Platform catch (e) {
+      debugPrint(e.toString());
+      emit(state.copyWith(
+        usersList: state.usersList,
+        isLoadingMore: false,
       ));
     }
   }
